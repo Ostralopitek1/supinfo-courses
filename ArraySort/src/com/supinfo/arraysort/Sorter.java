@@ -5,14 +5,25 @@ import java.util.Random;
 public class Sorter {
     public static void main(String[] args) {
         int[] array = getRandomIntArray(10);
+        System.out.println("Bubble sort");
         displayArray(array);
         bubbleSort(array);
-        // insertionSort(array);
-        // selectionSort(array);
+        displayArray(array);
+
+        array = getRandomIntArray(10);
+        System.out.println("Insertion sort");
+        displayArray(array);
+        insertionSort(array);
+        displayArray(array);
+
+        array = getRandomIntArray(10);
+        System.out.println("Selection sort");
+        displayArray(array);
+        selectionSort(array);
         displayArray(array);
     }
 
-    static int[] getRandomIntArray(int size) {
+    private static int[] getRandomIntArray(int size) {
         int[] array = new int[size];
         Random random = new Random();
         for (int i = 0; i < size; i++) {
@@ -21,7 +32,7 @@ public class Sorter {
         return array;
     }
 
-    public static int[] bubbleSort(int[] array) {
+    private static int[] bubbleSort(int[] array) {
         boolean sorted = false;
         while(!sorted) {
             sorted = true;
@@ -38,7 +49,7 @@ public class Sorter {
         return array;
     }
 
-    public static int[] selectionSort(int[] array) {
+    private static int[] selectionSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             int minIdx = i;
             int minValue = array[i];
@@ -54,7 +65,7 @@ public class Sorter {
         return array;
     }
 
-    public static int[] insertionSort(int[] array) {
+    private static int[] insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             for (int j = 0; j <= i; j++) {
                 if (array[i] <= array[j]) {
@@ -71,7 +82,7 @@ public class Sorter {
         return array;
     }
 
-    public static void displayArray(int[] array) {
+    private static void displayArray(int[] array) {
         for (int value : array) {
             System.out.print(value + " ");
         }
