@@ -6,20 +6,20 @@ public class Cell {
     private int x;
     private int y;
 
-    public Cell(int x, int y){
+    Cell(int x, int y){
         this.x = x;
         this.y = y;
     }
 
-    public CellType getType() {
+    CellType getType() {
         return type;
     }
 
-    public void setType(CellType type) {
+    void setType(CellType type) {
         this.type = type;
     }
 
-    public int checkNeighbors(Cell[][] grid){
+    int checkNeighbors(Cell[][] grid){
         int populatedNeighbors = 0;
         Cell[] neighbors = {
                 grid[x-1][y-1], grid[x-1][y], grid[x-1][y+1],
