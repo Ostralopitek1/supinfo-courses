@@ -14,6 +14,14 @@ public class World {
         this(getRandomGrid(nbRows, nbColumns));
     }
 
+    /**
+     * Checks each cell around the specified location and
+     * calculate the number of cells alive.
+     *
+     * @param row   a row index on the world's grid
+     * @param col   a column index on the world's grid
+     * @return      the number of neighbors
+     */
     private int getNeighbors(int row, int col) {
         int maxRow = this.getRows() - 1;
         int startRow = row - 1 >= 0      ? row - 1 : 0;
@@ -34,6 +42,9 @@ public class World {
         return neighbors;
     }
 
+    /**
+     * Go to the next generation of each cell on the grid
+     */
     public void newGeneration() {
         Cell[][] nextGrid = new Cell[this.getRows()][this.getColumns()];
         for (int r = 0; r < this.getRows(); r++) {
@@ -46,14 +57,25 @@ public class World {
         this.generation++;
     }
 
+    /**
+     * @return  the number of rows on the grid
+     */
     private int getRows() {
         return this.getGrid().length;
     }
 
+    /**
+     * @return  the number of columns on the grid
+     */
     private int getColumns() {
         return this.getGrid().length > 0 ? this.getGrid()[0].length : 0;
     }
 
+    /**
+     * Returns the formatted grid with the current generation
+     *
+     * @return  the generated String
+     */
     @Override
     public String toString() {
         String val = "Generation " + generation + ":\n";
@@ -66,6 +88,14 @@ public class World {
         return val;
     }
 
+    /**
+     * Generates a random grid with cells of different
+     * types to initialize the world
+     *
+     * @param rows      the number of rows on the newly created grid
+     * @param columns   the number of columns on the newly created grid
+     * @return          a new grid with random cells
+     */
     private static Cell[][] getRandomGrid(int rows, int columns) {
         Cell[][] grid = new Cell[rows][columns];
         for (int r = 0; r < rows; r++) {
@@ -76,6 +106,11 @@ public class World {
         return grid;
     }
 
+    /**
+     * Generates a new cell from a random int
+     *
+     * @return  a classic Cell of unknown type
+     */
     private static Cell getRandomCell() {
         Random generator = new Random();
         int rand = generator.nextInt(3);
@@ -84,6 +119,13 @@ public class World {
         return cell;
     }
 
+    /**
+     * Retrieves a Cell from specified indices
+     *
+     * @param row   the row index of the Cell
+     * @param col   the column index of the Cell
+     * @return      the Cell at the specified location
+     */
     public Cell getCell(int row, int col) {
         return this.getGrid()[row][col];
     }
