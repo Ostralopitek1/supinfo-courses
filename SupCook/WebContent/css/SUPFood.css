@@ -1,0 +1,70 @@
+@charset "ISO-8859-1";
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .container {
+        margin-top: 25px;
+    }
+    
+    footer {
+        background-color: #f2f2f2;
+        padding: 5px;
+        position: fixed;
+        height: 30px;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .but_formular {
+        margin: 20px;
+    }
+
+    .but_recipe {
+        margin-top: 5px;
+    }
+
+    #mapid { height: 180px; }
+
+    body {
+        background-image: url("/images/background_index.jpg");
+        background-size: cover;
+    }
+
+    .rating {
+        direction: rtl;
+    }
+    .rating a {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 18px;
+        transition: color .2s;
+    }
+    .rating_active {
+        color: orange!important;
+    }
+    .rating a:hover,
+    .rating a:focus,
+    .rating a:hover ~ a,
+    .rating a:focus ~ a {
+        color: yellow;
+        cursor: pointer;
+    }
+
+    .no-style-pre {
+        background: none;
+        border: none;
+        white-space: pre-wrap;
+        word-break: normal;
+    }
+
+    .deco-none, .deco-none:hover {
+        text-decoration: none;
+        color: white;
+    }
+
+    .products {
+        background-color: white;
+    }
