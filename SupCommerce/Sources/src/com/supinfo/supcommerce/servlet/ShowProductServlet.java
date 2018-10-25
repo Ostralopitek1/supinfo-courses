@@ -13,6 +13,8 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/showProduct")
 public class ShowProductServlet extends HttpServlet {
+    private final static String VIEW = "/WEB-INF/showProduct.jsp";
+
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // Try to parse the ID from parameters
         String strId = req.getParameter("id");
@@ -27,10 +29,7 @@ public class ShowProductServlet extends HttpServlet {
             res.sendError(404, "SupProduct not found");
             return;
         }
-        // If everything went well, send the product details
-        res.getWriter().write("ID: " + product.getId());
-        res.getWriter().write("\nName: " + product.getName());
-        res.getWriter().write("\nContent: " + product.getContent());
-        res.getWriter().write("\nPrice: $" + product.getPrice());
+        req.setAttribute("product", product);
+        req.getRequestDispatcher(VIEW).forward(req, res);
     }
 }
