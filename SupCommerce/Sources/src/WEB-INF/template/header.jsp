@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String username = (String) session.getAttribute("username"); %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header>
-    <p><%= username == null ? "" : username %></p>
+    <p>${sessionScope.username}</p>
     <ul>
         <li><a href="/listProduct">Products</a></li>
-        <% if (username == null) { %>
-        <li><a href="/login">Login</a></li>
-        <% } else { %>
-        <li><a href="/auth/addProduct">Add product</a></li>
-        <li><a href="/logout">Logout</a></li>
-        <% } %>
+        <c:if test="${empty sessionScope.username}">
+            <li><a href="/login">Login</a></li>
+        </c:if>
+        <c:if test="${!empty sessionScope.username}">
+            <li><a href="/auth/addProduct">Add product</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </c:if>
     </ul>
 </header>
