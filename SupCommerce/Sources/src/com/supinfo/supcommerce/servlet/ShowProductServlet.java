@@ -5,11 +5,13 @@ import com.supinfo.sun.supcommerce.doa.SupProductDao;
 import com.supinfo.sun.supcommerce.exception.UnknownProductException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet(urlPatterns = "/showProduct")
 public class ShowProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // Try to parse the ID from parameters
