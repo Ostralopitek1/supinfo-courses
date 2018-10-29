@@ -1,7 +1,5 @@
 package com.supinfo.supcommerce.servlet;
 
-import com.supinfo.sun.supcommerce.bo.SupProduct;
-import com.supinfo.sun.supcommerce.doa.SupProductDao;
 import com.supinfo.supcommerce.entity.Category;
 import com.supinfo.supcommerce.entity.Product;
 
