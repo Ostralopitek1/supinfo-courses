@@ -4,6 +4,7 @@
     <p>${sessionScope.username}</p>
     <ul>
         <li><a href="/listProduct">Products</a></li>
+        <li><a href="/cheapProducts">Good deals</a></li>
         <c:if test="${empty sessionScope.username}">
             <li><a href="/login">Login</a></li>
         </c:if>
