@@ -1,5 +1,4 @@
-<%@ page import="com.supinfo.sun.supcommerce.bo.SupProduct" %>
-<%@ page import="java.util.List" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Products list</title>
@@ -8,17 +7,14 @@
 <body>
     <h1>Products list</h1>
     <div>
-        <% List<SupProduct> products = (List<SupProduct>) request.getAttribute("products"); %>
-        <% for (SupProduct product : products) { %>
-        <div>
-            <a href="/showProduct?id=<%= product.getId() %>">
-                <%= product.getName() + " - $" + product.getPrice()%>
-            </a>
-            <form action="/auth/removeProduct?id=<%= product.getId() %>" method="post" style="display: inline; margin-left: 10px;">
-                <input type="submit" value="Remove">
-            </form>
-        </div>
-        <% } %>
+        <c:forEach items="${requestScope.products}" var="product">
+            <div>
+                <a href="showProduct?id=${product.id}">${product.name} - $${product.price}</a>
+                <form action="auth/removeProduct?id=${product.id}" method="post" style="display: inline; margin-left: 10px;">
+                    <input type="submit" value="Remove">
+                </form>
+            </div>
+        </c:forEach>
     </div>
 </body>
 <%@include file="/WEB-INF/template/footer.jsp"%>
