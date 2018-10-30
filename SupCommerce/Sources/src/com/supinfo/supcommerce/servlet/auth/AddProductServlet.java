@@ -1,5 +1,8 @@
 package com.supinfo.supcommerce.servlet.auth;
 
+import com.supinfo.supcommerce.dao.CategoryDao;
+import com.supinfo.supcommerce.dao.DaoFactory;
+import com.supinfo.supcommerce.dao.ProductDao;
 import com.supinfo.supcommerce.entity.Category;
 import com.supinfo.supcommerce.entity.Product;
 
@@ -16,13 +19,6 @@ import java.util.List;
 @WebServlet(urlPatterns = "/auth/addProduct")
 public class AddProductServlet extends HttpServlet {
     private final static String VIEW = "/WEB-INF/auth/addProduct.jsp";
-    private EntityManagerFactory emf;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        emf = Persistence.createEntityManagerFactory("SupCommerce-PU");
-    }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // Parse parameters
@@ -43,40 +39,22 @@ public class AddProductServlet extends HttpServlet {
         product.setName(name);
         product.setContent(content);
         product.setPrice(price);
-        // Play with DB
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction t = em.getTransaction();
         try {
-            // Get and set category
-            Query query = em.createQuery("SELECT c FROM Category AS c WHERE id=:id");
-            query.setParameter("id", categoryId);
-            Category category = (Category) query.getSingleResult();
+            CategoryDao categoryDao = DaoFactory.getInstance().getCategoryDao();
+            Category category = categoryDao.findCategoryById(categoryId);
             product.setCategory(category);
-            // Persist product
-            t.begin();
-            em.persist(product);
-            t.commit();
+            ProductDao productDao = DaoFactory.getInstance().getProductDao();
+            productDao.addProduct(product);
         } catch (NoResultException e) {
             res.sendError(404, "Category not found");
             return;
-        } finally {
-            if (t.isActive()) t.rollback();
-            em.close();
         }
         res.sendRedirect("/showProduct?id=" + product.getId());
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("SELECT c FROM Category AS c");
-        List<Category> categories = query.getResultList();
-        req.setAttribute("categories", categories);
+        CategoryDao categoryDao = DaoFactory.getInstance().getCategoryDao();
+        req.setAttribute("categories", categoryDao.getAll());
         req.getRequestDispatcher(VIEW).forward(req, res);
-        em.close();
-    }
-
-    @Override
-    public void destroy() {
-        emf.close();
     }
 }
