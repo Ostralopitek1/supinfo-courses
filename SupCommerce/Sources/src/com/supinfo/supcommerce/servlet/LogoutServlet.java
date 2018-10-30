@@ -10,12 +10,12 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.removeAttribute("username");
-        res.sendRedirect("/login");
+        doGet(req, res);
     }
 
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.removeAttribute("username");

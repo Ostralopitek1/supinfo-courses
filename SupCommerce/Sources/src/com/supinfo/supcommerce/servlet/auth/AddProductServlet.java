@@ -20,7 +20,7 @@ public class AddProductServlet extends HttpServlet {
         try {
             price = Float.parseFloat(strPrice);
         } catch (NumberFormatException e) {
-            res.sendError(400, "Price must be an integer");
+            res.sendError(400, "Price must be a number");
         }
         SupProduct product = new SupProduct();
         product.setName(name);
