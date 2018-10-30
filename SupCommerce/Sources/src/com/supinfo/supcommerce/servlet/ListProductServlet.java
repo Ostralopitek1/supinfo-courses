@@ -13,11 +13,12 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/listProduct")
 public class ListProductServlet extends HttpServlet {
+    private final static String VIEW = "/WEB-INF/listProduct.jsp";
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<SupProduct> products = SupProductDao.getAllProducts();
-        for (SupProduct p : products) {
-            res.getWriter().write("[" + p.getId() + "] " + p.getName() + "\n");
-        }
+        req.setAttribute("products", products);
+        req.getRequestDispatcher(VIEW).forward(req, res);
     }
 }
