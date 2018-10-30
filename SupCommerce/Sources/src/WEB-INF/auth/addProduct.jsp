@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Add a product</title>
@@ -18,6 +19,11 @@
             <label for="price">Price</label>
             <input type="number" step="0.01" id="price" name="price" placeholder="Price" min="0" required>
         </div>
+        <select name="categoryId">
+            <c:forEach items="${requestScope.categories}" var="cat">
+                <option value="${cat.id}">${cat.name}</option>
+            </c:forEach>
+        </select>
         <input type="submit" value="Add">
     </form>
 </body>
