@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<persistence
+        xmlns="http://java.sun.com/xml/ns/persistence"
+        version="2.0">
+
+    <persistence-unit name="SupCommerce-PU">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <properties>
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.user"
+                      value="supcommerce" />
+            <property name="javax.persistence.jdbc.password"
+                      value="supinfo" />
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://127.0.0.1:3306/SupCommerce?serverTimezone=UTC" />
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update" />
+            <property name="hibernate.show_sql"
+                      value="true" />
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQL5Dialect" />
+        </properties>
+    </persistence-unit>
+</persistence>
