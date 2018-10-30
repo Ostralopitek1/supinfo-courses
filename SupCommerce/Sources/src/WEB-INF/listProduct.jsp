@@ -14,6 +14,9 @@
             <a href="/showProduct?id=<%= product.getId() %>">
                 <%= product.getName() + " - $" + product.getPrice()%>
             </a>
+            <form action="/auth/removeProduct?id=<%= product.getId() %>" method="post" style="display: inline; margin-left: 10px;">
+                <input type="submit" value="Remove">
+            </form>
         </div>
         <% } %>
     </div>
